@@ -27,6 +27,11 @@ rinstall/1.1.6/* /install/1.1.x/:splat 301
 
 # Docs
 
+/docs/latest/installation/amazonlinux/ /docs/latest/install/linux 301
+/docs/latest/installation/debian/ /docs/latest/install/linux 301
+/docs/latest/installation/centos/ /docs/latest/install/linux 301
+/docs/latest/installation/redhat/ /docs/latest/install/linux 301
+/docs/latest/installation/ubuntu/ /docs/latest/install/linux 301
 /docs /docs/2.0.x 301
 /docs/latest/documentation/gateway /docs/1.8.x/explore/gateway 301
 /docs/latest/deployments /docs/:version/1.8.x/deployments 301
