@@ -136,72 +136,72 @@ If the signing key is compromised, we must rotate it and all the tokens that was
 
    Make sure to generate the new signing key with a serial number greater than the serial number of the current signing key.
 
-   {% tabs key-rotation useUrlFragment=false %}
-   {% tab key-rotation Universal %}
-   Check what is the current highest serial number.
+  {% tabs key-rotation useUrlFragment=false %}
+  {% tab key-rotation Universal %}
+  Check what is the current highest serial number.
 
-   ```sh
-   kumactl get secrets
-   MESH      NAME                                    AGE
-   default   dataplane-token-signing-key-default-1   49s
-   ```
+  ```sh
+  kumactl get secrets
+  MESH      NAME                                    AGE
+  default   dataplane-token-signing-key-default-1   49s
+  ```
 
-   In this case, the highest serial number is `1`. Generate a new signing key with a serial number of `2`
+  In this case, the highest serial number is `1`. Generate a new signing key with a serial number of `2`
 
-   ```sh
-   echo "
-   type: Secret
-   mesh: default
-   name: dataplane-token-signing-key-default-2
-   data: {{ key }}" | kumactl apply --var key=$(kumactl generate signing-key) -f -
-   ```
+  ```sh
+  echo "
+  type: Secret
+  mesh: default
+  name: dataplane-token-signing-key-default-2
+  data: {{ key }}" | kumactl apply --var key=$(kumactl generate signing-key) -f -
+  ```
 
-   {% endtab %}
-   {% tab key-rotation Kubernetes %}
-   Check what is the current highest serial number.
+  {% endtab %}
+  {% tab key-rotation Kubernetes %}
+  Check what is the current highest serial number.
 
-   ```sh
-   kubectl get secrets -n kuma-system --field-selector='type=system.kuma.io/secret'
-   NAME                                 TYPE                    DATA   AGE
-   dataplane-token-signing-key-mesh-1   system.kuma.io/secret   1      25m
-   ```
+  ```sh
+  kubectl get secrets -n kuma-system --field-selector='type=system.kuma.io/secret'
+  NAME                                 TYPE                    DATA   AGE
+  dataplane-token-signing-key-mesh-1   system.kuma.io/secret   1      25m
+  ```
 
-   In this case, the highest serial number is `1`. Generate a new signing key with a serial number of `2`
+  In this case, the highest serial number is `1`. Generate a new signing key with a serial number of `2`
 
-   ```sh
-   TOKEN="$(kumactl generate signing-key)" && echo "
-   apiVersion: v1
-   data:
-     value: $TOKEN
-   kind: Secret
-   metadata:
-     name: dataplane-token-signing-key-mesh-2
-     namespace: kuma-system
-   type: system.kuma.io/secret
-   " | kubectl apply -f -
-   ```
+  ```sh
+  TOKEN="$(kumactl generate signing-key)" && echo "
+  apiVersion: v1
+  data:
+    value: $TOKEN
+  kind: Secret
+  metadata:
+    name: dataplane-token-signing-key-mesh-2
+    namespace: kuma-system
+  type: system.kuma.io/secret
+  " | kubectl apply -f -
+  ```
 
-   {% endtab %}
-   {% endtabs %}
+  {% endtab %}
+  {% endtabs %}
 
 2. Regenerate tokens
    Create new data plane proxy tokens. These tokens are automatically created with the signing key that’s assigned the highest serial number, so they’re created with the new signing key.
    At this point, tokens signed by either new or old signing key are valid.
 
 3. Remove the old signing key
-   {% tabs remove-key useUrlFragment=false %}
-   {% tab remove-key Universal %}
-   ```sh
-   kumactl delete secret dataplane-token-signing-key-default-1 --mesh=default
-   ```
-   {% endtab %}
-   {% tab remove-key Kubernetes %}
-   ```sh
-   kubectl delete secret dataplane-token-signing-key-default-1 -n kuma-system
-   ```
-   {% endtab %}
-   {% endtabs %}
-   All new connections to the control plane now require tokens signed with the new signing key.
+  {% tabs remove-key useUrlFragment=false %}
+  {% tab remove-key Universal %}
+  ```sh
+  kumactl delete secret dataplane-token-signing-key-default-1 --mesh=default
+  ```
+  {% endtab %}
+  {% tab remove-key Kubernetes %}
+  ```sh
+  kubectl delete secret dataplane-token-signing-key-default-1 -n kuma-system
+  ```
+  {% endtab %}
+  {% endtabs %}
+  All new connections to the control plane now require tokens signed with the new signing key.
 
 ### Token rotation
 
