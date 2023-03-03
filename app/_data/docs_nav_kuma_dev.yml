@@ -6,10 +6,10 @@ items:
   - title: Introduction
     group: true
     items:
-      - text: Introduction to Kuma
-        url: /introduction/what-is-kuma/
-      - text: What is Service Mesh?
-        url: /introduction/what-is-a-service-mesh/
+      - text: About service meshes
+        url: /introduction/about-service-meshes/    
+      - text: Overview of Kuma
+        url: /introduction/overview-of-kuma/
       - text: How Kuma works
         url: /introduction/how-kuma-works/
         items:
@@ -19,11 +19,29 @@ items:
             url: "/introduction/how-kuma-works/#vm-and-k8s-support"
           - text: Kuma vs XYZ
             url: "/introduction/how-kuma-works/#kuma-vs-xyz"
-      - text: Deployments
-        url: /introduction/deployments/
-      - text: Enterprise
-        url: /introduction/enterprise/
-      - text: Changelog
+      - text: Architecture
+        url: /introduction/architecture/
+        items:
+          - text: Components
+            url: "/introduction/architecture/#components"
+          - text: Kubernetes mode
+            url: "/introduction/architecture/#kubernetes-mode"
+          - text: Universal mode
+            url: "/introduction/overview/#universal-mode"
+      - text: Kuma requirements
+        url: /introduction/requirements/
+        items:
+          - text: Architecture
+            url: "/documentation/requirements/#architecture"
+          - text: Kubernetes
+            url: "/documentation/requirements/#kubernetes"
+          - text: Envoy
+            url: "/documentation/requirements/#envoy"
+          - text: Sizing your control-plane
+            url: "/documentation/requirements/#sizing-your-control-plane"
+          - text: Sizing your sidecar container on Kubernetes
+            url: "/documentation/requirements/#sizing-your-sidecar-container-on-kubernetes"
+      - text: Release notes
         absolute_url: true
         url: https://github.com/kumahq/kuma/blob/master/CHANGELOG.md
   - title: Install
@@ -120,15 +138,6 @@ items:
   - title: Explore
     group: true
     items:
-      - text: Overview
-        url: /explore/overview/
-        items:
-          - text: Components
-            url: "/explore/overview/#components"
-          - text: Kubernetes mode
-            url: "/explore/overview/#kubernetes-mode"
-          - text: Universal mode
-            url: "/explore/overview/#universal-mode"
       - text: Data plane proxy
         url: /explore/dpp/
         items:
@@ -391,19 +400,7 @@ items:
             url: "/documentation/upgrades/#standalone"
           - text: Multizone
             url: "/documentation/upgrades/#multizone"
-      - text: Requirements
-        url: /documentation/requirements/
-        items:
-          - text: Architecture
-            url: "/documentation/requirements/#architecture"
-          - text: Kubernetes
-            url: "/documentation/requirements/#kubernetes"
-          - text: Envoy
-            url: "/documentation/requirements/#envoy"
-          - text: Sizing your control-plane
-            url: "/documentation/requirements/#sizing-your-control-plane"
-          - text: Sizing your sidecar container on Kubernetes
-            url: "/documentation/requirements/#sizing-your-sidecar-container-on-kubernetes"
+
   - title: Policies
     group: true
     items:
