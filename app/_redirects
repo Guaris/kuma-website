@@ -36,7 +36,6 @@ https://traffic.kuma.io/exclude-inbound-ports /docs/LATEST_RELEASE/reference/kub
 https://traffic.kuma.io/exclude-outbound-ports /docs/LATEST_RELEASE/reference/kubernetes-annotations/#traffic-kuma-io-exclude-outbound-ports/ 302
 
 
-
 # Community section
 
 /reference/license/   /docs/LATEST_RELEASE/community/license/ 302
